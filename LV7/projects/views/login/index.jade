@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+	style(type='text/css').
+		.error {
+			color: red;
+		}
+
+	div(class="container")
+		h2.
+			#{title}
+
+		p(class="error") #{error}
+
+		form#formLogin(name="login", method="post", action="/login")
+			div(class="form-group row")
+				label(for=email) E-mail:
+					input#inputEmail(type="email", placeholder="E-mail", name="email", class="form-control", value=data.email, required)
+			div(class="form-group row")
+				label(for=password) Password:
+					input#inputPassword(type="password", placeholder="Password", name="password", class="form-control", value=data.password, required)
+				p
+					button#btnSubmit(type="submit", class="btn btn-primary") SUBMIT
+
+		form(action='/register', method='get')
+				button(type='submit' class="btn btn-secondary").
+					REGISTER
+
+

@@ -1,0 +1,56 @@
+extends ../layout
+
+block content
+	h1.
+		 #{title}
+
+	form(action='/projects/archive', method='get')
+		button(type='submit' class="btn btn-secondary").
+			ARCHIVE
+
+	form(action='/projects/my', method='get')
+		button(type='submit' class="btn btn-info").
+			MY PROJECTS
+
+	form(action='/projects/new', method='get')
+		button(type='submit' class="btn btn-success").
+			ADD PROJECT
+
+	form(action='/logout', method='get')
+		button(type='submit' class="btn btn-danger").
+			LOG OUT
+
+	#wrapper
+
+	#projectList
+		table
+			thead
+				th Name
+				th Description
+				th Price
+				th Author
+				th Members
+				th FinishedWorks
+				th StartTime
+				th EndTime
+				th Archived
+				th Details
+			tbody
+				- each project, i in projects
+					tr
+						td=project.name
+						td=project.description
+						td=project.price
+						td=project.authorName
+						td=project.members
+						td=project.finishedWorks
+						td=project.startTime
+						td=project.endTime
+						if project.archived
+							td YES
+						else
+							td NO
+						td
+							form(action='/projects/#{project._id}', method='get')
+								button(type='submit', class="btn btn-info").
+									Show

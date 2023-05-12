@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+	div(class="container")
+		h1.
+			Project ID #{project._id}
+
+		form(action='/projects/edit/#{project._id}', method='post', name='updateproject', enctype='application/x-www-form-urlencoded')
+			div(class="form-group row")
+				label(for=name) Name:
+					input#inputName(type='text', value='#{project.name}', name='name' class="form-control" required)
+			div(class="form-group row")
+				label(for=description) Description:
+					input#inputDescription(type='text', value='#{project.description}', name='description' class="form-control" required)
+			div(class="form-group row")
+				label(for=price) Price:
+					input#inputPrice(type='number', value='#{project.price}', name='price' class="form-control" required)
+			div(class="form-group row")
+				label(for=finishedWorks) Finished Works:
+					input#inputFinishedWorks(type='text', value='#{project.finishedWorks}', name='finishedWorks' class="form-control" required)
+			div(class="form-group row")
+				label(for=startTime) Start Time:
+					input#inputStartTime(type='date', value='#{project.startTime}', name='startTime' class="form-control" required)
+			div(class="form-group row")
+				label(for=endTime) End Time:
+					input#inputEndTime(type='date', value='#{project.endTime}', name='endTime' class="form-control" required)
+			input#inputArchived(type="checkbox", name="archived" checked=project.archived)
+			label(for=archived) Archived
+			div(class="form-group row")
+				p Members
+					#members
+						- each user, i in users
+							div(class="form-check")
+								input#inputMember(type="checkbox", name="member[]", checked=user.checked, value=user.username)
+								label(for=member)=user.username
+			p
+				input(type='hidden', value='PUT', name='_method')
+			p
+				button#btnSubmit(type='submit' class="btn btn-primary").
+					Update

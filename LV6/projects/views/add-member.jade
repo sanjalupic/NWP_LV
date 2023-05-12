@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    form(action='/projects/add-member' method='post')
+        input(type='text' name='member')
+        input(type='hidden' name='id' value=project.id)
+        input(type='submit' value='Posalji')

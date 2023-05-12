@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    form(action='/projects' method='post')
+        p Ime:
+            input(type='text', name='name' value=project.name)
+        p Opis:
+            input(type='text', name='description' value=project.description)
+        p Cijena:
+            input(type='number', name='price' value=project.price)
+        p Napravljeno:
+            textarea(name='workdone')= project.workdone
+        p Pocetak:
+            input(type='date', name='start' value=project.start)
+        p Kraj:
+            input(type='date', name='end' value=project.end)
+            input(type='hidden' name='id' value=project.id)
+        p
+            input(type='submit' name='submit' value='Posalji')
+
+    section
+        h2 Clanovi
+        if project.length
+            each member in project.members
+                li=member

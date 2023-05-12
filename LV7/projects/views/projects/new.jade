@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+	div(class="container")
+		h2.
+			#{title}
+
+		form#formAddProject(name="addproject", method="post", action="/projects")
+			div(class="form-group row")
+				label(for=name) Name:
+					input#inputName(type="text", placeholder="Name", name="name" class="form-control" required)
+			div(class="form-group row")
+				label(for=description) Description:
+					input#inputDescription(type="text", placeholder="Description", name="description" class="form-control" required)
+			div(class="form-group row")
+				label(for=price) Price:
+					input#inputPrice(type="number", placeholder="100", name="price" class="form-control" required)
+			div(class="form-group row")
+				label(for=finishedWorks) Finished Works:
+					input#inputFinishedWorks(type="text", placeholder="Finished Works", name="finishedWorks" class="form-control" required)
+			div(class="form-group row")
+				label(for=startTime) Start Time:
+					input#inputStartTime(type="date", name="startTime" class="form-control" required)
+			div(class="form-group row")
+				label(for=endTime) End Time:
+					input#inputEndTime(type="date", name="endTime" class="form-control" required)
+			input#inputArchived(type="checkbox", name="archived")
+			label(for=archived) Archived
+			div(class="form-group row")
+				p Members
+					#members
+						- each user, i in users
+							div(class="form-check")
+								input#inputMember(type="checkbox", name="member[]", value=user.username)
+								label(for=member)=user.username
+			p
+				button#btnSubmit(type="submit" class="btn btn-primary") SUBMIT
